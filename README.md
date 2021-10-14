@@ -1,4 +1,4 @@
-# WordClock
+# Simple WordClock
 [![Version](https://img.shields.io/badge/version-2.0.0-green.svg?style=for-the-badge)](#) [![mantained](https://img.shields.io/maintenance/yes/2019.svg?style=for-the-badge)](#)
 
 **Font and german layout based on https://www.mikrocontroller.net/articles/Word_Clock**
