@@ -60,26 +60,6 @@ int time_hours[][6] = {
   {43, 42, 41, -1, -1, -1}
 };
 
-int degree_minus[] = {108, 107, 106, 105};
-
-int degree_symbol[] = { 119, 101, 99, 97};
-
-int degree_10[] = {70, 61, 48, 39, 26, 17, 4};
-int degree_20[] = {67, 68, 69, 70, 61, 48, 42, 41, 40, 39, 23, 20, 1, 2, 3, 4};
-int degree_30[] = {67, 68, 69, 70, 61, 48, 42, 41, 40, 39, 26, 17, 1, 2, 3, 4};
-int degree_40[] = {67, 70, 64, 61, 45, 48, 42, 41, 40, 39, 26, 17, 4};
-
-int degree_0[] = {72, 73, 74, 75, 59, 56, 50, 53, 37, 34, 28, 31, 15, 12, 6, 7, 8, 9};
-int degree_1[] = {75, 56, 53, 34, 31, 12, 9};
-int degree_2[] = {72, 73, 74, 75, 56, 53, 37, 36, 35, 34, 28, 15, 6, 7, 8, 9};
-int degree_3[] = {72, 73, 74, 75, 56, 53, 37, 36, 35, 34, 31, 12, 6, 7, 8, 9};
-int degree_4[] = {72, 75, 59, 56, 50, 53, 37, 36, 35, 34, 31, 12, 9};
-int degree_5[] = {72, 73, 74, 75, 59, 50, 37, 36, 35, 34, 31, 12, 6, 7, 8, 9};
-int degree_6[] = {72, 73, 74, 75, 59, 50, 37, 36, 35, 34, 28, 31, 15, 12, 6, 7, 8, 9};
-int degree_7[] = {72, 73, 74, 75, 56, 53, 34, 31, 12, 9};
-int degree_8[] = {72, 73, 74, 75, 59, 56, 50, 53, 37, 36, 35, 34, 28, 31, 15, 12, 6, 7, 8, 9};
-int degree_9[] = {72, 73, 74, 75, 59, 56, 50, 53, 37, 36, 35, 34, 31, 12, 6, 7, 8, 9};
-
 pixel_color_t icon_snow[] = {
   { 5, 212, 223, 244 }, { 6, 176, 208, 247 }, { 7, 169, 206, 246 }, { 8, 207, 229, 249 }, { 14, 213, 232, 249 },
   { 15, 114, 175, 239 }, { 16, 86, 159, 237 }, { 17, 86, 159, 237 }, { 18, 155, 198, 244 }, { 19, 233, 233, 233 },
@@ -198,7 +178,6 @@ int timezone;
 
 String mode = "time";
 String icon = "";
-int degree = 0;
 
 color_t hexToRgb(String value) {
   value.replace("#", "");
@@ -300,93 +279,6 @@ void setTime(int hour, int minute) {
   FastLED.show();
 }
 
-void setDegree() {
-  int value;
-
-  value = degree;
-  
-  for(int i = 0; i < NUM_LEDS; i++) { 
-    leds[i].setRGB(0, 0, 0);
-  }
-
-  for(int i = 0; i < (sizeof(degree_symbol) / sizeof(int)); i++) { 
-    leds[degree_symbol[i]].setRGB(255, 255, 255);
-  }
-
-  if(value < 0) {
-    for(int i = 0; i < (sizeof(degree_minus) / sizeof(int)); i++) { 
-      leds[degree_minus[i]].setRGB(255, 255, 255);
-    }
-
-    value = value * -1;
-  }
-
-  int ten = value / 10;
-  int one = value % 10;
-
-  if(ten == 1) {
-    for(int i = 0; i < (sizeof(degree_10) / sizeof(int)); i++) { 
-      leds[degree_10[i]].setRGB(255, 255, 255);
-    }
-  } else if(ten == 2) {
-    for(int i = 0; i < (sizeof(degree_20) / sizeof(int)); i++) { 
-      leds[degree_20[i]].setRGB(255, 255, 255);
-    }
-  } else if(ten == 3) {
-    for(int i = 0; i < (sizeof(degree_30) / sizeof(int)); i++) { 
-      leds[degree_30[i]].setRGB(255, 255, 255);
-    }
-  } else if(ten == 4) {
-    for(int i = 0; i < (sizeof(degree_40) / sizeof(int)); i++) { 
-      leds[degree_40[i]].setRGB(255, 255, 255);
-    }
-  }
-
-  if(one == 1) {
-    for(int i = 0; i < (sizeof(degree_1) / sizeof(int)); i++) { 
-      leds[degree_1[i]].setRGB(255, 255, 255);
-    }
-  } else if(one == 2) {
-    for(int i = 0; i < (sizeof(degree_2) / sizeof(int)); i++) { 
-      leds[degree_2[i]].setRGB(255, 255, 255);
-    }
-  } else if(one == 3) {
-    for(int i = 0; i < (sizeof(degree_3) / sizeof(int)); i++) { 
-      leds[degree_3[i]].setRGB(255, 255, 255);
-    }
-  } else if(one == 4) {
-    for(int i = 0; i < (sizeof(degree_4) / sizeof(int)); i++) { 
-      leds[degree_4[i]].setRGB(255, 255, 255);
-    }
-  } else if(one == 5) {
-    for(int i = 0; i < (sizeof(degree_5) / sizeof(int)); i++) { 
-      leds[degree_5[i]].setRGB(255, 255, 255);
-    }
-  } else if(one == 6) {
-    for(int i = 0; i < (sizeof(degree_6) / sizeof(int)); i++) { 
-      leds[degree_6[i]].setRGB(255, 255, 255);
-    }
-  } else if(one == 7) {
-    for(int i = 0; i < (sizeof(degree_7) / sizeof(int)); i++) { 
-      leds[degree_7[i]].setRGB(255, 255, 255);
-    }
-  } else if(one == 8) {
-    for(int i = 0; i < (sizeof(degree_8) / sizeof(int)); i++) { 
-      leds[degree_8[i]].setRGB(255, 255, 255);
-    }
-  } else if(one == 9) {
-    for(int i = 0; i < (sizeof(degree_9) / sizeof(int)); i++) { 
-      leds[degree_9[i]].setRGB(255, 255, 255);
-    }
-  } else if(one == 0) {
-    for(int i = 0; i < (sizeof(degree_0) / sizeof(int)); i++) { 
-      leds[degree_0[i]].setRGB(255, 255, 255);
-    }
-  }
-
-  FastLED.show();
-}
-
 String getTimeForm() {
   String content = "";
 
@@ -436,15 +328,6 @@ String getIconForm() {
   return content;
 }
 
-String getDegreeForm() {
-  String content = "";
-  content += "<div>";
-  content += "<input type=\"number\" name=\"degree\" value=\"" + String(degree) + "\">";
-  content += "</div>";
-
-  return content;
-}
-
 String htmlOption(String label, String value, String store) {
   String content = "<option value=\"" + value + "\"";
   
@@ -485,29 +368,6 @@ void change() {
       icon = server.arg("icon");
     }
     change = true;
-  } else if(mode == "degree") {
-    if(server.hasArg("degree")) {
-      String in = server.arg("degree");
-      int factor = 1;
-      Serial.println(String(in.toInt()) + " - " + in);
-      
-      
-      if(in.charAt(0) == '-') {
-        factor = -1;
-        in.replace("-", "");
-      }
-  
-      degree = in.toInt();
-      degree = degree * factor;
-      
-      if(degree < -49) {
-        degree = -49;
-      } else if(degree > 49) {
-        degree = 49;
-      }
-    }
-    
-    change = true;
   }
 
   if(change == true) {
@@ -541,7 +401,6 @@ void handleRootPath() {
 
   content += htmlOption("Time", "time", mode);
   content += htmlOption("Icon", "icon", mode);
-  content += htmlOption("Degree", "degree", mode);
 
   content += "</select>";
   content += "</div>";
@@ -556,8 +415,6 @@ void handleRootPath() {
     content += getTimeForm();
   } else if(mode == "icon") {
     content += getIconForm();
-  } else if(mode == "degree") {
-    content += getDegreeForm();
   }
   
   content += "<div>";
@@ -578,8 +435,6 @@ void show() {
     setTime(hour, minute);
   } else if(mode == "icon") {
     setIcon();
-  } else if(mode == "degree") {
-    setDegree();
   }
 }
 
