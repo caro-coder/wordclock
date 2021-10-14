@@ -7,13 +7,8 @@
 #define NUM_LEDS 121
 #define DATA_PIN D4
 
-/**********************
- * SET WIFI CREDENTIALS
- **********************/
 const char* ssid  = "";
 const char* password = "";
-
-
 
 typedef struct { 
   int r;
@@ -70,7 +65,6 @@ int minute = -1;
 String ip = "";
 
 WiFiUDP ntpUDP;
-
 NTPClient timeClient(ntpUDP, "pool.ntp.org", offset, 3600000);
 
 ESP8266WebServer server(80);
@@ -86,7 +80,6 @@ color_t hexToRgb(String value) {
   value.replace("#", "");
   int number = (int) strtol( value.c_str(), NULL, 16);
   
-  // Split them up into r, g, b values
   int r = number >> 16;
   int g = number >> 8 & 0xFF;
   int b = number & 0xFF;
@@ -269,12 +262,9 @@ void handleRootPath() {
 
   server.sendHeader("Location", "http://" + ip);
   server.send(200, "text/html", content);
- 
 }
 
-void show() {
-  Serial.println(mode);
-  
+void show() {  
   if(mode == "time") {
     setTime(hour, minute);
   }
@@ -321,7 +311,6 @@ void setup() {
   }
 
   FastLED.show();
-
   show();
 }
 
